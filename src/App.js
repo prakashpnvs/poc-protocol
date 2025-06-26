@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import { uploadToIPFS } from "./utils/ipfsService";
 import { verifySignature } from "./utils/verifySignature";
 import { hashAgreement } from "./utils/hashAgreement";
+import "./App.css";
 
 function App() {
   const [wallet, setWallet] = useState("");
@@ -39,23 +40,38 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: "Arial" }}>
-      <h1>PoC Protocol</h1>
-      {!wallet ? (
-        <button onClick={connectWallet}>🔐 Connect Wallet</button>
-      ) : (
-        <p><strong>Connected:</strong> {wallet}</p>
-      )}
-      <textarea placeholder="Type the agreement..." value={message} onChange={(e) => setMessage(e.target.value)} rows={4} cols={60} />
-      <br />
-      <button onClick={signMessage}>✍️ Sign Message</button>
-      {signature && (<textarea readOnly value={signature} rows={3} cols={60}></textarea>)}
-      <br />
-      <button onClick={uploadProof} disabled={!signature}>📦 Upload to IPFS</button>
-      {ipfsCid && (<p>✅ IPFS CID: <a href={`https://ipfs.io/ipfs/${ipfsCid}`} target="_blank" rel="noreferrer">{ipfsCid}</a></p>)}
-      {hash && <p><strong>Hash of Proof:</strong> {hash}</p>}
-      <button onClick={verify} disabled={!signature}>🔍 Verify Signature</button>
-      {verified && <p style={{ color: 'green' }}>✅ Signature verified!</p>}
+    <div className="container">
+      <h1>PoC Protocol MVP</h1>
+      <div className="section">
+        <button onClick={connectWallet}>🔐 {wallet ? "Wallet Connected" : "Connect Wallet"}</button>
+        {wallet && <p><strong>Wallet:</strong> {wallet}</p>}
+      </div>
+
+      <div className="section">
+        <label>Agreement Message:</label>
+        <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={4} />
+      </div>
+
+      <div className="section">
+        <button onClick={signMessage}>✍️ Sign Message</button>
+        {signature && (
+          <>
+            <label>Signature:</label>
+            <textarea readOnly value={signature} rows={3} />
+          </>
+        )}
+      </div>
+
+      <div className="section">
+        <button onClick={uploadProof} disabled={!signature}>📦 Upload to IPFS</button>
+        {ipfsCid && <p>✅ <strong>IPFS CID:</strong> <a href={`https://ipfs.io/ipfs/${ipfsCid}`} target="_blank" rel="noreferrer">{ipfsCid}</a></p>}
+        {hash && <p><strong>Hash:</strong> {hash}</p>}
+      </div>
+
+      <div className="section">
+        <button onClick={verify} disabled={!signature}>🔍 Verify Signature</button>
+        {verified && <p className="success">✅ Signature Verified</p>}
+      </div>
     </div>
   );
 }

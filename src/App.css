@@ -1,0 +1,40 @@
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  font-family: monospace;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.success {
+  color: green;
+}
