@@ -41,7 +41,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>PoC Protocol MVP</h1>
+      <h1>PoC Protocol</h1>
       <div className="section">
         <button onClick={connectWallet}>🔐 {wallet ? "Wallet Connected" : "Connect Wallet"}</button>
         {wallet && <p><strong>Wallet:</strong> {wallet}</p>}

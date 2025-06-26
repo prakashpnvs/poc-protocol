@@ -44,24 +44,12 @@ People make commitments over wallet chats, Telegram, Discord, and DMs every day.
 
 ## 🛠 Tech Stack
 
-- **React.js** — User interface for signing and proof generation
-- **Ethers.js** — Wallet connection, signing, and hashing
-- **MetaMask** — Wallet authentication (WalletConnect coming soon)
-- **IPFS** — Decentralized storage of the signed agreement
-- **Ethereum (Solidity)** — (Planned) anchoring hash proofs on-chain
-- **XMTP** — (Planned) Wallet-to-wallet encrypted messaging
-
----
-
-## 🧪 Demo Workflow (MVP)
-
-1. Wallet A types a shared message
-2. Wallet A signs it using MetaMask
-3. The message + signature are hashed and uploaded to IPFS
-4. The hash can optionally be anchored on-chain
-5. Wallet B (in future versions) also signs the same message
-
-> Current version supports single-wallet signing and verification
+- **React.js** – Frontend and UI
+- **Ethers.js** – Wallet connection, signing, hashing
+- **MetaMask** – Wallet provider (EIP-191 compliant)
+- **IPFS via Infura** – Decentralized storage of signed data
+- **keccak256** – Cryptographic hash for agreement proof
+- **Jest** – Unit testing for hashing logic
 
 ---
 
@@ -72,3 +60,44 @@ git clone git@github.com:prakashpnvs/poc-protocol.git
 cd poc-protocol
 npm install
 npm run start
+```
+
+---
+
+## 🔄 How It Works
+
+Imagine **Alice and Bob** want to create a cryptographic record that both agreed to a message — without revealing it publicly or storing it on-chain.
+
+### 🧾 Agreement Flow
+
+1. **Alice connects her MetaMask wallet**  
+   → She is identified by her wallet address.
+
+2. **Alice writes the agreement message**  
+   → Example: `"I will pay 1 ETH for design services by Friday."`
+
+3. **Alice signs the message using MetaMask**  
+   → Her wallet generates a digital signature of the message.
+
+4. **Alice sends the message + signature to Bob**  
+   → This can be via email, wallet messaging (XMTP), or IPFS link.
+
+5. **Bob connects his wallet and verifies Alice’s signature**  
+   → He confirms that Alice agreed to the exact message.
+
+6. **Bob signs the same message with his wallet**  
+   → Now both parties have signed the exact same message.
+
+7. **App generates a `keccak256` hash of the signed message**  
+   → This acts as a verifiable digital fingerprint.
+
+8. **Store the message, signatures, and hash on IPFS**  
+   → The IPFS CID acts as a permanent, tamper-proof reference.
+
+9. **Anyone can later verify:**
+    - Both wallets signed the same message
+    - Signatures match the message and the wallets
+    - The message content hasn’t changed
+    - The data was created at a specific point in time
+
+---
