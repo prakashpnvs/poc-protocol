@@ -1,78 +1,67 @@
 # 🧾 PoC Protocol — Proof of Conversation
 
-**PoC Protocol** is a decentralized system that enables two wallets to mutually sign and cryptographically anchor a private conversation or agreement. It provides a verifiable, timestamped record of consent — without revealing the actual message content unless both parties choose to.
+**PoC Protocol** is a decentralized system that enables two Ethereum wallets to mutually sign and cryptographically anchor a private conversation or agreement. It provides a verifiable, timestamped record of consent without revealing the actual message unless both parties agree.
 
-> Designed for trustless collaboration in freelancing, DAOs, Web3 deals, and creator communities.
+> Built for trustless collaboration in freelancing, DAOs, Web3 deals, and creator communities.
 
 ---
 
 ## 🚀 Why PoC Protocol?
 
-In Web3, we trust smart contracts — but not conversations.
+In Web3, we trust smart contracts but not conversations.
 
-People make commitments over wallet chats, Telegram, Discord, and DMs every day. But there's no reliable proof that an agreement was made unless someone screenshots a message — and screenshots are not cryptographically verifiable.
+People make commitments over wallet chats, Telegram, Discord, and DMs every day. But there's no reliable proof that an agreement was made unless someone screenshots a message, and screenshots are not cryptographically verifiable.
 
-**PoC Protocol solves that** by creating a lightweight, proof-of-agreement system powered by wallets, signatures, IPFS, and (optionally) on-chain anchoring.
+**PoC Protocol solves this** by creating a lightweight "proof-of-agreement" system using:
+- Wallets (for identity)
+- Signatures (for intent)
+- Hashing (for confidentiality)
+- IPFS + Ethereum (for immutability)
 
 ---
 
 ## 🔐 Core Features
 
-- ✅ **Wallet-based consent** using `eth_signMessage`
-- ✅ **Mutual agreement workflow** between two wallet addresses
-- ✅ **Optional IPFS anchoring** for message hashes
-- ✅ **Smart contract registry** for on-chain timestamping
-- ✅ **Privacy-preserving**: messages stay off-chain unless revealed
+- ✅ **Wallet-based consent** via `eth_signMessage`
+- ✅ **Dual-signature agreement** between two wallet addresses
+- ✅ **IPFS anchoring** for message + signature bundle
+- ✅ **On-chain registry (optional)** for timestamped proof
+- ✅ **Privacy-preserving**: message stays off-chain unless revealed
 
 ---
 
 ## 🌍 Use Cases
 
-| Scenario                  | Value |
-|---------------------------|-------|
-| 🤝 Web3 Freelancing        | Prove that a wallet agreed to pay on delivery |
-| 🏛 DAO Operations          | Snapshot verifiable agreements between members |
-| 🧑‍🎨 Creator Collaborations | Lock in shared creative rights or custom NFT terms |
-| 📜 Token Deals             | Proof of handshake terms without NDAs |
-| 🗳 Governance              | Vouch for consensus decisions outside Snapshot |
+| Scenario                  | Benefit |
+|---------------------------|---------|
+| 🤝 Web3 Freelancing        | Prove a client agreed to pay on delivery |
+| 🏛 DAO Operations          | Capture verifiable off-chain decisions |
+| 🎨 Creator Collaborations | Lock in shared creative rights or custom NFT terms |
+| 📜 Token Deals             | Sign lightweight handshake agreements |
+| 🗳 Governance              | Store consensus outside of Snapshot voting |
 
 ---
 
 ## 🛠 Tech Stack
 
-- **React** + **Ethers.js** (frontend wallet UX)
-- **XMTP** (wallet messaging – coming soon)
-- **IPFS** (hash storage of signed agreements)
-- **Ethereum Smart Contract** (on-chain proof anchoring)
-- **MetaMask / WalletConnect** (wallet auth & signing)
+- **React.js** — User interface for signing and proof generation
+- **Ethers.js** — Wallet connection, signing, and hashing
+- **MetaMask** — Wallet authentication (WalletConnect coming soon)
+- **IPFS** — Decentralized storage of the signed agreement
+- **Ethereum (Solidity)** — (Planned) anchoring hash proofs on-chain
+- **XMTP** — (Planned) Wallet-to-wallet encrypted messaging
 
 ---
 
-## 🧪 Demo Preview (MVP)
+## 🧪 Demo Workflow (MVP)
 
-1. Wallets A and B connect to the app
-2. They enter a shared message or agreement text
-3. Both parties sign it
-4. The message is hashed and:
-    - Uploaded to IPFS
-    - Anchored on-chain via smart contract
-5. A public proof viewer can verify:
-    - Wallets involved
-    - Timestamp
-    - Agreement hash
-    - Optional reveal of content (with consent)
+1. Wallet A types a shared message
+2. Wallet A signs it using MetaMask
+3. The message + signature are hashed and uploaded to IPFS
+4. The hash can optionally be anchored on-chain
+5. Wallet B (in future versions) also signs the same message
 
----
-
-## 🧱 Smart Contract
-
-Solidity-based registry to store:
-- `walletA`
-- `walletB`
-- `proofHash`
-- `timestamp`
-
-Includes verification logic to confirm mutual participation.
+> Current version supports single-wallet signing and verification
 
 ---
 
