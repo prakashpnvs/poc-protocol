@@ -12,7 +12,7 @@ In Web3, we trust smart contracts — but not conversations.
 
 People make commitments over wallet chats, Telegram, Discord, and DMs every day. But there's no reliable proof that an agreement was made unless someone screenshots a message — and screenshots are not cryptographically verifiable.
 
-**PoC Protocol solves that** by creating a lightweight, legal-lite proof-of-agreement system powered by wallets, signatures, IPFS, and (optionally) on-chain anchoring.
+**PoC Protocol solves that** by creating a lightweight, proof-of-agreement system powered by wallets, signatures, IPFS, and (optionally) on-chain anchoring.
 
 ---
 
